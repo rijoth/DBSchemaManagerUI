@@ -81,6 +81,30 @@ def schema_details(name):
     return 'you are not logged in'
 
 
+# schema object details
+@app.route('/schema/<name>/<obj>')
+def object_details(name, obj):
+    if ('user' in session):
+        cursor = con.cursor()
+        sql = """
+            select
+            OBJECT_NAME,
+            OBJECT_ID,
+            CREATED,
+            LAST_DDL_TIME,
+            TIMESTAMP,
+            STATUS,
+            APPLICATION,
+            DATA_OBJECT_ID,
+            DEFAULT_COLLATION,
+            OWNER
+            from dba_objects where owner = :usrname and object_type = :obj_type
+            """
+        cursor.execute(sql, usrname=name, obj_type=obj)
+        return render_template('obj_details.html', data=cursor, owner=name, obj=obj)
+    return 'you are not logged in'
+
+
 # unlock schema
 @app.route('/unlock/<name>')
 def unlock_schema(name):

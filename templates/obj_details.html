@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Schema Details {% endblock %}
+
+{% block content %}
+
+
+&nbsp;
+
+<div class="container">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Select Object Type
+      </button>
+      <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='TABLE') }}">Table</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='SYNONYM') }}">Synonym</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='VIEW') }}">View</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='FUNCTION') }}">Function</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='PACKAGE') }}">Package</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='PACKAGE BODY') }}">Package Body</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='Index') }}">Index</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='PROCEDURE') }}">Procedure</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='SEQUENCE') }}">Sequence</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('object_details', name=owner, obj='TRIGGER') }}">Trigger</a></li>
+      </ul>
+    </div>
+    &nbsp
+<!-- object details -->
+<h4>{{ obj|capitalize }}'s in {{ owner }} schema:</h4>
+{% for value in data %}
+<div class = "card">
+    <table class="table table-striped">
+        </hr>
+        <tr>
+            <th>Name:</th>
+            <td>{{ value[0] }}</td>
+        </tr>
+        <tr>
+            <th>ID:</th>
+            <td>{{ value[1] }}</td>
+        </tr>
+           <tr>
+            <th>Created Date & Time:</th>
+            <td>{{ value[2] }}</td>
+        </tr>
+        <tr>
+            <th>Last DDL Time:</th>
+            <td>{{ value[3] }}</td>
+        </tr>
+        <tr>
+            <th>Timestamp:</th>
+            <td>{{ value[4] }}</td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td>{{ value[5] }}</td>
+        </tr>
+         <tr>
+            <th>Application:</th>
+            <td>{{ value[6] }}</td>
+        </tr>
+          <tr>
+            <th>Data Object ID:</th>
+            <td>{{ value[7] }}</td>
+        </tr>
+        <tr>
+            <th>Default Collation:</th>
+            <td>{{ value[8] }}</td>
+        </tr>
+    </table>
+</div> 
+ &nbsp; &nbsp;
+{% endfor %}
+
+</div>
+&nbsp; &nbsp;
+
+{% endblock %}

@@ -56,6 +56,7 @@
         {% else %}
         <a class="btn btn-danger" href="{{ url_for('lock_schema', name=value[0] )}}" role="button">Lock Schema</a>
         {% endif %}
+            <a class="btn btn-primary" href="{{ url_for('object_details', name=value[0], obj='TABLE') }}" role="button">Details</a>
             <a class="btn btn-warning" href="#" role="button">Edit</a>
             <a class="btn btn-primary" href="#" role="button">Export</a>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
