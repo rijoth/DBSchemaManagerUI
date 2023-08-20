@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Flask Intro - login page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <!-- custom css --> 
+    <link href="static/styles/login.css" rel="stylesheet">
+    <body>
+        <!--
+            <div class="container">
+            <h1>Please login</h1>
+            <br>
+            <form action="" method="post">
+            <input type="text" placeholder="Username" name="username" value="{{
+            request.form.username }}">
+            <input type="password" placeholder="Password" name="password" value="{{
+            request.form.password }}">
+            <input class="btn btn-default" type="submit" value="Login">
+            </form>
+            {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}
+            {% endif %}
+            </div>
+        -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="text-center text-light mt-5">Login Form</h2>
+                    <div class="text-center mb-5 text-light">Made with bootstrap</div>
+                    <div class="card my-5">
+
+                        <form action="" method="post" class="card-body cardbody-color p-lg-5">
+                            <div class="text-center">
+                                <img src="https://banner2.cleanpng.com/20180418/aae/kisspng-computer-icons-database-enterprise-search-informat-transfer-5ad7c4188228d3.9426287215240898805331.jpg" 
+                                class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                                width="200px" alt="profile">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" placeholder="Username"
+                                class="form-control" name="username" value="{{ request.form.username }}">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" placeholder="Password"
+                                class="form-control" name="password" value="{{ request.form.password }}>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="Login" class="btn btn-color px-5 mb-5 w-100">
+                            </div>
+                            {% if error %}
+                            <div id="emailHelp" class="form-text text-center mb-5 text-dark">
+                                {{ error }}
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

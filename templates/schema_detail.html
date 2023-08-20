@@ -1,0 +1,89 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Schema Details {% endblock %}
+
+{% block content %}
+
+{% for value in data %}
+<div class="container card">
+    &nbsp;
+    <h4>Schema Detail:</h4>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Schema Name:</th>
+            <td>{{ value[0] }}</td>
+        </tr>
+        <tr>
+            <th>Account Status:</th>
+            <td>{{ value[1] }}</td>
+        </tr>
+           <tr>
+            <th>Created Date & Time:</th>
+            <td>{{ value[2] }}</td>
+        </tr>
+        <tr>
+            <th>User ID:</th>
+            <td>{{ value[3] }}</td>
+        </tr>
+        <tr>
+            <th>Lock Date:</th>
+            <td>{{ value[4] }}</td>
+        </tr>
+        <tr>
+            <th>Expiry Date:</th>
+            <td>{{ value[5] }}</td>
+        </tr>
+         <tr>
+            <th>Default Tablespace:</th>
+            <td>{{ value[6] }}</td>
+        </tr>
+          <tr>
+            <th>Temp Tablespace:</th>
+            <td>{{ value[7] }}</td>
+        </tr>
+        <tr>
+            <th>Profile:</th>
+            <td>{{ value[8] }}</td>
+        </tr>
+    </table>
+   
+    <div class="card" style="width: 24rem;">
+        <div class="card-header"> <b> Actions </b> </div>
+        <div class="btn-group btn-group-sm">
+        <!-- if locked show unlock btn else show lock btn -->
+        {% if value[1] == 'LOCKED' %}
+            <a class="btn btn-success" href="{{ url_for('unlock_schema', name=value[0]) }}" role="button">Unlock Schema</a>
+        {% else %}
+        <a class="btn btn-danger" href="{{ url_for('lock_schema', name=value[0] )}}" role="button">Lock Schema</a>
+        {% endif %}
+            <a class="btn btn-warning" href="#" role="button">Edit</a>
+            <a class="btn btn-primary" href="#" role="button">Export</a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                Delete
+            </button>
+        </div>
+   </div>
+</div>
+&nbsp; &nbsp;
+
+<!-- modals (confirm popups) -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Are you sure?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          Delete schema {{ value[0] }} <br> (This action cannot be undone.)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}
