@@ -2,10 +2,16 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
-<!-- grid card layout -->
+
 <div class="container m-4">
+    <!-- search bar -->
+      <div class="form-group">
+         <input type="text" class="form-control" placeholder="Search Schema" id='searchp'>
+    </div>
+    &nbsp; &nbsp;
+    <!-- grid card layout -->
     <div class="row row-cols-1 row-cols-md-2
-        row-cols-lg-3 g-4">
+        row-cols-lg-3 g-4" id="schemaList">
 
         <!-- sample loop for schemas -->
         {% for value in data %}
@@ -31,4 +37,22 @@
 
     </div>
 </div>
+
+<script>
+    document.getElementById('searchp').addEventListener('input', function (event) {
+    const searchTerm = event.target.value.toLowerCase();
+    const listItems = document.querySelectorAll('#schemaList div');
+
+    listItems.forEach(function (item) {
+        const itemText = item.textContent.toLowerCase();
+
+        if (itemText.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    });
+</script>
+
 {% endblock %}

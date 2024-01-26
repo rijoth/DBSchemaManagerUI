@@ -1,0 +1,52 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+
+ &nbsp; &nbsp;
+
+ <hr />
+ <div class = "container">
+     <label for="schema_list">Select a schema for export:</label>
+     <select name="schema_list" id="schema_list">
+        {% for value in data %}
+            <option value="1">
+                {{ value[0] }}
+            </option>
+        {% endfor %}
+     </select>
+
+    <button type="button" class="btn btn-success" id="submit-button" onclick='redirect_Page(this)'>Export</button>
+    <span class="spinner-border spinner-border-sm ms-2 d-none" id="spinner" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </span>
+    &nbsp; &nbsp;
+</div>
+<hr />
+
+<script>
+const submitButton = document.querySelector('#submit-button');
+const spinner = document.querySelector('#spinner');
+
+submitButton.addEventListener('click', () => {
+  submitButton.disabled = true;
+  spinner.classList.remove('d-none');
+});
+    // Using ES6 feature.
+  let redirect_Page = (ele) => {
+  	
+      ele.value = 'Redirecting in 5 secs ...';
+      ele.disabled = true;
+      
+      let tID = setTimeout(function () {
+
+  		// redirect page.
+          window.location.href = "{{ url_for('export_schema_result')}}";
+          
+          window.clearTimeout(tID);		// clear time out.
+          
+      }, 5000);	// call function after 5000 milliseconds or 5 seconds
+  }
+</script>
+
+{% endblock %}

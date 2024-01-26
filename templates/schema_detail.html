@@ -1,8 +1,8 @@
 {% extends 'layouts/base.html' %}
 {% block title %} Schema Details {% endblock %}
 
-{% block content %}
 
+{% block content %}
 {% for value in data %}
 <div class="container card">
     &nbsp;
@@ -57,13 +57,19 @@
         <a class="btn btn-danger" href="{{ url_for('lock_schema', name=value[0] )}}" role="button">Lock Schema</a>
         {% endif %}
             <a class="btn btn-primary" href="{{ url_for('object_details', name=value[0], obj='TABLE') }}" role="button">Details</a>
-            <a class="btn btn-warning" href="#" role="button">Edit</a>
-            <a class="btn btn-primary" href="#" role="button">Export</a>
+            <a class="btn btn-warning" href="{{ url_for('change_pass', name=value[0] )}}" role="button">Change Password</a>
+            <a class="btn btn-primary" href="{{ url_for('export_schema', name=value[0]) }}" role="button">Export</a>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
                 Delete
             </button>
         </div>
    </div>
+    
+   {% if change_pass == True %}
+    <div class="alert alert-success">
+        <strong>Success!</strong> Schema password has been changed
+    </div>
+   {% endif %}
 </div>
 &nbsp; &nbsp;
 

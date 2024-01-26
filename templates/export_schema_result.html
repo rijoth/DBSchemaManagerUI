@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+
+ &nbsp; &nbsp;
+
+<div class = "container card">
+    &nbsp; &nbsp;
+    <h5> Schema export has been completed !</h5>
+    <p> 
+        <b>Export Path:</b> <div id="sch_path"> </div> 
+    </p>
+    &nbsp;
+</div>
+
+<script>
+    function generateRandomString(length) {
+        const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let result = "";
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            result += charset.charAt(randomIndex);
+        }
+        return result;
+    }
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = "_" + mm + '-' + dd + '-' + yyyy;
+
+    randomString = generateRandomString(18);
+    randomString = randomString + today
+    randomString = randomString.concat(".dmp")
+    randomString = "~/OracleSchemaManager/exports/" + randomString
+    document.getElementById("sch_path").textContent = randomString;
+</script>
+
+{% endblock %}

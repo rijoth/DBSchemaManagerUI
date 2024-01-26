@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock %}
+
+
+{% block content %}
+
+ &nbsp; &nbsp;
+{% for value in data_ts %}
+{% endfor %}
+
+
+<div class="container card">
+    <form action="" method="post" class="card-body">
+        <div class="mb-3">
+            <label for="schemaname" class="form-label">Schema Name</label>
+            <input type="text" class="form-control" id="schemaname" name="schema_name" aria-describedby="schemaName">
+            <div id="schemaHelp" class="form-text">Enter a new Oracle schema/username</div>
+        </div>
+        <div class="mb-3">
+            <label for="schemapass" class="form-label">Schema Password</label>
+            <input type="password" class="form-control" id="schemapass" name="schema_pass">
+        </div>
+        <div class="mb-3">
+            <label for="schema_pass_conf" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="schema_pass_conf" name="schema_passConf">
+        </div>
+        <div class="mb-3">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Schema</button>
+        <p id="error">{{ error }}</p>
+    </form>
+</div>
+{% endblock %}
